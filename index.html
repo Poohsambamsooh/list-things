@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="">
+  <head>
+    <title></title>
+  </head>
+  <body>
+  <style>
+.spiderman{
+ width: 100vw;
+ height: 100vh;
+}
+.header{
+position:absolute;
+top:0px;
+left:0px;
+width:25vw;
+height:25vh;
+font-size:55px;
+color:black;
+text-align:center;
+}
+.textBox{
+position:absolute;
+left:10px;
+top:20vh;
+}
+#toDoList{
+position:absolute;
+}
+ </style>
+ <script>
+ function addItem(){
+ var text=document.getElementById("textBox")
+ var textBox=text.value;
+ // alert (textBox)
+ var toDoList=document.getElementById("toDoList");
+ var toDoItem=document.createElement("div");
+ toDoItem.innerHTML=textBox;
+ toDoList.appendChild(toDoItem);
+ toDoItem.setAttribute("onclick","removeThis(this)")
+ save()
+ }
+ function removeThis(element){
+ var removeThis=document.getElementById("toDoList")
+ removeThis.removeChild(element)
+ }
+
+ function save(){
+  var save=document.getElementById("toDoList");
+  console.log (save.innerHTML)
+  localStorage.textBox=save .innerHTML
+
+ }
+    function load() {
+  var saveDiv=document.getElementById("toDoList");
+ if (localStorage.textBox) saveDiv.innerHTML=localStorage.textBox;
+ }
+
+ </script>
+  <img class="spiderman" src="spiderman.jpg"/>
+  <div class="header">to do list</div>
+  <div class="textBox">
+  <input id="textBox" type="text" value="blah"/>
+  <button onclick="addItem()">+</button>
+  <div id="toDoList">
+
+  </div>
+  </div>
+  <script>
+  load();
+  </script>
+  </body>
+</html>
